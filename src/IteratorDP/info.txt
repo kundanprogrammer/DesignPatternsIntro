@@ -1,0 +1,65 @@
+
+User.java 'pojo'->
+UserManagement.java -> list of User
+        public void addUser(User user){
+        userList.add(user;
+        }
+        public void getUser(int index){
+        return userList.get(index);
+        }
+
+        public MyIterator getIterator(){
+        return new MyIteratorImpl(userList);
+        }
+
+Main->
+    UserManagement obj->.addUser(new User(<pojo args for constructors>) X4
+    ->->getIterator(){
+    while(myIterator.hasNext()){
+        User user=(User) myIterator.next();
+        sout(user.getName());
+        }
+        }
+
+
+
+
+Pojo-> plain old java object
+Dao-> Data Access Object
+pom.xml-> project Object Model , Extensible Markup Language
+
+
+
+We want to traverse; but we dont want to exposing implementation of iterating
+
+import java.util.List;
+
+public class MyIteratorImpl implements MyIterator{
+
+private List<User> list;
+private int length;
+private int position =0;
+
+public MyIteratorImpl(List<User> list){
+this.list=list;
+this.length=list.size();
+
+}
+@Override
+public boolean hssNext(){
+if(Position>=length || list.get(position)==null)
+{
+    return false;
+}else{
+    return true;
+}
+
+}
+
+@Override
+public boolean next(){
+    User user=list.get(position);
+    position+=1;
+    return user;
+
+}
